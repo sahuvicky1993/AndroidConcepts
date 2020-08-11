@@ -27,3 +27,5 @@ system broadcasts:
          this.registerReceiver(br, filter);                --> Create an IntentFilter and register the receiver by calling registerReceiver()
      Life of Context-registered receivers receive broadcasts as long as their registering context is valid.  if you register within an Activity context, you receive
      broadcasts as long as the activity is not destroyed. If you register with the Application context, you receive broadcasts as long as the app is running.
+
+// https://developer.android.com/guide/components/broadcasts
