@@ -2,3 +2,28 @@ Idea: Android apps can send or receive broadcast messages from the Android syste
 system broadcasts:
    Android system sends broadcasts when various system events occur, such as Airplane mode On/Off. System broadcasts are sent to all apps that are subscribed to receive 
    the event. The broadcast message itself is wrapped in an Intent object whose action string identifies the event that occurred (for example android.intent.action.AIRPLANE_MODE).
+ Receiving broadcasts:
+   Apps can receive broadcasts in two ways: through manifest-declared receivers and context-registered receivers.
+   Manifest-declared receivers:
+      1. Specify the <receiver> element in your app's manifest.
+      <receiver android:name=".MyBroadcastReceiver"  android:exported="true">
+         <intent-filter>                                                            --> The intent filters specify the broadcast actions your receiver subscribes to.
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            <action android:name="android.intent.action.INPUT_METHOD_CHANGED" />
+         </intent-filter>
+      </receiver>
+      2. Subclass BroadcastReceiver and implement onReceive(Context, Intent)
+         public class MyBroadcastReceiver extends BroadcastReceiver {
+        private static final String TAG = "MyBroadcastReceiver";
+        @Override
+        public void onReceive(Context context, Intent intent) { ... }
+    Life of Broadcast: The system package manager registers the receiver when the app is installed. Once your code returns from onReceive method, the system considers
+    the Broadcast component no longer active.
+    Context-registered receivers: 
+      To register a receiver with a context
+      1. BroadcastReceiver br = new MyBroadcastReceiver(); --> 
+      2. IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+         this.registerReceiver(br, filter);                --> Create an IntentFilter and register the receiver by calling registerReceiver()
+     Life of Context-registered receivers receive broadcasts as long as their registering context is valid.  if you register within an Activity context, you receive
+     broadcasts as long as the activity is not destroyed. If you register with the Application context, you receive broadcasts as long as the app is running.
