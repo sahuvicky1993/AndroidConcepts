@@ -1,5 +1,3 @@
 Idea: Android apps can send or receive broadcast messages from the Android system and other Android apps.
 system broadcasts:
-   Android system sends broadcasts when various system events occur, such as Airplane mode On/Off. System 
-   broadcasts are sent to all apps that are subscribed to receive the event. The broadcast message itself 
-   is wrapped in an Intent object whose action string identifies the event that occurred (for example android.intent.action.AIRPLANE_MODE).
+   Android system sends broadcasts when various system events occur, such as Airplane mode On/Off. System broadcasts are sent to all apps that are subscribed to receive the        event. The broadcast message itself is wrapped in an Intent object whose action string identifies the event that occurred (for example android.intent.action.AIRPLANE_MODE).
