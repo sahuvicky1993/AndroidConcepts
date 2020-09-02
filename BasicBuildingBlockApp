@@ -5,3 +5,7 @@
 5 > Broadcast Receivers
 6 > Application Context
 https://www.oreilly.com/library/view/learning-android/9781449304881/ch04.html
+
+IS there any Difference bw Activity and Service since both are using intent to create with and both uses the same APP context.
+Yes. Check when to create Activity and when to create service.
+Check life cycle of Activity
